@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#090b13">
+  <meta name="description" content="毛银亮个人作品集，展示旅游网站项目、旅游内容运营、业务实践与数字化产品思路。联系方式：2377411629@qq.com / 19531418624">
+  <meta name="keywords" content="毛银亮,旅游管理,智慧旅游,作品集,内容运营,旅游网站,数字化">
+  <title>毛银亮｜个人作品集 · 旅行 × 数字化</title>
+
+  <style>
+    :root {
+      --bg: #090b13;
+      --bg-card: #111522;
+      --bg-card-hover: #171c2d;
+      --text: #f4f5fb;
+      --muted: #a5abc0;
+      --blue: #8da0ff;
+      --purple: #c19bff;
+      --cyan: #71e4e8;
+      --border: rgba(255, 255, 255, 0.12);
+      --radius: 22px;
+      --max-width: 1160px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; scroll-padding-top: 90px; }
+
+    body {
+      min-height: 100vh;
+      overflow-x: hidden;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 10% 5%, rgba(91, 105, 255, .13), transparent 30%),
+        radial-gradient(circle at 90% 25%, rgba(175, 106, 255, .10), transparent 28%),
+        var(--bg);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+      line-height: 1.75;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    button, input { font: inherit; }
+    button { cursor: pointer; }
+    img { display: block; max-width: 100%; }
+
+    ::selection { color: #fff; background: #626dff; }
+
+    .container { width: min(var(--max-width), calc(100% - 40px)); margin: 0 auto; }
+    .section { padding: 100px 0; position: relative; }
+    .section-header { max-width: 760px; margin-bottom: 42px; }
+
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 10px;
+      margin-bottom: 14px; color: var(--cyan);
+      font-size: 12px; font-weight: 800; letter-spacing: .18em; text-transform: uppercase;
+    }
+    .eyebrow::before { content: ""; width: 24px; height: 1px; background: currentColor; }
+
+    h1, h2, h3, h4 { line-height: 1.25; letter-spacing: -.035em; }
+    h1 { font-size: clamp(42px, 7vw, 82px); font-weight: 900; }
+    h2 { font-size: clamp(30px, 4vw, 48px); font-weight: 850; }
+    h3 { font-size: 23px; font-weight: 800; }
+    p { color: var(--muted); }
+
+    .gradient-text {
+      color: transparent;
+      background: linear-gradient(100deg, #8ea0ff, #c19bff 48%, #75e8e8);
+      -webkit-background-clip: text; background-clip: text;
+    }
+
+    .card {
+      border: 1px solid var(--border); border-radius: var(--radius);
+      background: rgba(255, 255, 255, .055);
+      box-shadow: 0 18px 60px rgba(0, 0, 0, .20);
+      backdrop-filter: blur(16px);
+      transition: border-color .25s ease, background .25s ease;
+    }
+    .card:hover { border-color: rgba(154, 165, 255, .34); background: rgba(255, 255, 255, .07); }
+
+    .pill {
+      display: inline-flex; align-items: center; gap: 7px;
+      padding: 7px 13px; border: 1px solid var(--border); border-radius: 999px;
+      color: #dce0f2; background: rgba(255, 255, 255, .04); font-size: 12px; line-height: 1.4;
+    }
+    .pill::before { content: ""; width: 5px; height: 5px; border-radius: 50%; background: var(--cyan); }
+
+    .button {
+      display: inline-flex; justify-content: center; align-items: center; gap: 10px;
+      padding: 13px 20px; border: 1px solid var(--border); border-radius: 13px;
+      color: var(--text); background: rgba(255, 255, 255, .06);
+      font-size: 14px; font-weight: 700; transition: .25s ease;
+    }
+    .button:hover { transform: translateY(-3px); background: rgba(255, 255, 255, .12); border-color: rgba(255, 255, 255, .3); }
+    .button-primary { border: none; color: #080b14; background: linear-gradient(100deg, #8da0ff, #c3a0ff); box-shadow: 0 10px 30px rgba(126, 136, 255, .2); }
+    .button-primary:hover { background: linear-gradient(100deg, #a3b1ff, #d0b5ff); }
+
+    /* 导航 */
+    .navbar { position: fixed; z-index: 1000; top: 0; left: 0; right: 0; border-bottom: 1px solid transparent; transition: .3s ease; }
+    .navbar.scrolled { border-bottom-color: var(--border); background: rgba(9, 11, 19, .86); backdrop-filter: blur(18px); }
+    .nav-inner { min-height: 76px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+    .brand { display: flex; align-items: center; gap: 12px; font-weight: 900; letter-spacing: -.04em; }
+    .brand-mark { display: grid; place-items: center; width: 36px; height: 36px; border-radius: 11px; color: #090b13; background: linear-gradient(135deg, #8b9cff, #bd91ff); font-size: 15px; font-weight: 900; }
+    .nav-links { display: flex; align-items: center; gap: 25px; }
+    .nav-links a { color: var(--muted); font-size: 13px; font-weight: 700; transition: color .2s ease; }
+    .nav-links a:hover, .nav-links a.active { color: #fff; }
+    .nav-cta { padding: 9px 14px; font-size: 12px; }
+    .menu-button { display: none; width: 42px; height: 42px; border: 1px solid var(--border); border-radius: 12px; color: var(--text); background: rgba(255, 255, 255, .05); font-size: 20px; }
+
+    /* 首页 */
+    .hero { min-height: 760px; display: flex; align-items: center; padding: 140px 0 100px; position: relative; overflow: hidden; }
+    .hero-grid { display: grid; grid-template-columns: 1.15fr .85fr; gap: 60px; align-items: center; }
+    .hero-kicker { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 24px; }
+    .hero h1 { margin-bottom: 25px; }
+    .hero-description { max-width: 620px; margin-bottom: 30px; font-size: 17px; line-height: 1.9; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 38px; }
+    .hero-meta { display: flex; flex-wrap: wrap; gap: 20px; color: var(--muted); font-size: 12px; }
+    .hero-meta strong { color: var(--text); font-weight: 800; }
+    .hero-visual { min-height: 430px; position: relative; display: grid; place-items: center; }
+    .orb { position: absolute; width: 330px; height: 330px; border-radius: 50%; opacity: .55; background: linear-gradient(135deg, rgba(111, 132, 255, .8), rgba(194, 132, 255, .4)); animation: float 7s ease-in-out infinite; }
+    .orb::after { content: ""; position: absolute; inset: 30px; border-radius: 50%; background: var(--bg); opacity: .65; }
+    .visual-card { position: relative; z-index: 2; width: min(100%, 360px); padding: 24px; border: 1px solid var(--border); border-radius: 22px; background: rgba(15, 18, 32, .84); box-shadow: 0 18px 60px rgba(0, 0, 0, .3); transform: rotate(3deg); }
+    .visual-card-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; }
+    .window-dots { display: flex; gap: 6px; }
+    .window-dots span { width: 7px; height: 7px; border-radius: 50%; background: #7d86a7; }
+    .visual-number { color: var(--cyan); font-size: 12px; font-weight: 800; }
+    .visual-title { margin-bottom: 12px; font-size: 26px; font-weight: 900; line-height: 1.35; }
+    .visual-line { height: 7px; margin: 11px 0; border-radius: 99px; background: rgba(255, 255, 255, .1); }
+    .visual-line:nth-child(2) { width: 85%; }
+    .visual-line:nth-child(3) { width: 62%; }
+    .visual-line:nth-child(4) { width: 75%; }
+    .visual-bottom { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 25px; }
+    .visual-bottom span { padding: 6px 9px; border-radius: 8px; color: #d9dcf5; background: rgba(126, 140, 255, .13); font-size: 10px; }
+    .floating-tag { position: absolute; z-index: 3; padding: 12px 15px; border: 1px solid var(--border); border-radius: 13px; color: #e5e7f7; background: rgba(15, 18, 32, .9); box-shadow: 0 18px 60px rgba(0, 0, 0, .25); font-size: 12px; font-weight: 700; }
+    .floating-tag.one { top: 45px; right: -5px; transform: rotate(5deg); }
+    .floating-tag.two { bottom: 55px; left: 0; transform: rotate(-5deg); }
+    .scroll-hint { position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%); color: var(--muted); font-size: 11px; letter-spacing: .16em; }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0) scale(1); }
+      50% { transform: translateY(-18px) scale(1.03); }
+    }
+
+    /* 数据亮点 */
+    .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+    .stat-card { padding: 24px; }
+    .stat-number { margin-bottom: 8px; font-size: clamp(28px, 4vw, 42px); font-weight: 900; letter-spacing: -.05em; }
+    .stat-label { color: var(--muted); font-size: 13px; }
+
+    /* 项目 */
+    .project-feature { display: grid; grid-template-columns: .9fr 1.1fr; gap: 28px; align-items: stretch; }
+    .project-info { padding: 32px; }
+    .project-info h3 { margin: 15px 0; font-size: 29px; }
+    .project-info p { margin-bottom: 22px; }
+    .project-points { display: grid; gap: 13px; margin: 26px 0; list-style: none; }
+    .project-points li { display: flex; gap: 10px; color: #dce0f2; font-size: 14px; }
+    .project-points li::before { content: "↗"; color: var(--cyan); font-weight: 900; }
+    .project-preview { padding: 14px; overflow: hidden; background: radial-gradient(circle at 90% 10%, rgba(124, 140, 255, .2), transparent 40%), #111525; }
+    .preview-window { min-height: 420px; height: 100%; overflow: hidden; border: 1px solid rgba(255, 255, 255, .1); border-radius: 15px; background: #0b1020; }
+    .preview-topbar { display: flex; align-items: center; gap: 8px; padding: 12px 16px; border-bottom: 1px solid rgba(255, 255, 255, .1); color: var(--muted); font-size: 11px; }
+    .preview-body { padding: 28px; }
+    .preview-label { margin-bottom: 12px; color: var(--cyan); font-size: 10px; letter-spacing: .18em; }
+    .preview-heading { margin-bottom: 20px; font-size: clamp(25px, 4vw, 42px); line-height: 1.2; font-weight: 900; }
+    .preview-search { display: flex; gap: 8px; margin: 24px 0 14px; }
+    .preview-search input { min-width: 0; flex: 1; padding: 12px 14px; outline: none; border: 1px solid rgba(255, 255, 255, .16); border-radius: 10px; color: #fff; background: rgba(255, 255, 255, .06); font-size: 13px; }
+    .preview-search input:focus { border-color: var(--blue); }
+    .preview-search button { padding: 10px 15px; border: none; border-radius: 10px; color: #080b14; background: linear-gradient(120deg, #8da0ff, #c3a0ff); font-size: 12px; font-weight: 800; }
+    .search-results { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; min-height: 75px; }
+    .destination-result { padding: 10px 12px; border: 1px solid rgba(255, 255, 255, .1); border-radius: 10px; color: #e6e8f8; background: rgba(255, 255, 255, .04); font-size: 12px; text-align: left; transition: .2s ease; }
+    .destination-result:hover { border-color: rgba(124, 140, 255, .5); background: rgba(124, 140, 255, .15); }
+    .search-note { margin-top: 12px; color: #7f87a5; font-size: 10px; }
+    .project-tabs { display: flex; flex-wrap: wrap; gap: 9px; margin: 25px 0 18px; }
+    .tab-button { padding: 8px 14px; border: 1px solid var(--border); border-radius: 999px; color: var(--muted); background: transparent; font-size: 12px; font-weight: 700; }
+    .tab-button.active { border-color: var(--cyan); color: #080b14; background: var(--cyan); }
+    .tab-panel { padding: 22px; border: 1px solid var(--border); border-radius: 16px; background: rgba(255, 255, 255, .035); }
+    .tab-panel h4 { margin-bottom: 10px; font-size: 17px; }
+    .tab-panel p { font-size: 13px; }
+
+    /* 产品思路 */
+    .journey-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+    .journey-card { padding: 24px; position: relative; overflow: hidden; }
+    .journey-number { margin-bottom: 22px; color: var(--blue); font-size: 12px; font-weight: 900; letter-spacing: .15em; }
+    .journey-card h3 { margin-bottom: 12px; font-size: 19px; }
+    .journey-card p { font-size: 13px; }
+    .journey-card::after { content: ""; position: absolute; right: -25px; bottom: -40px; width: 110px; height: 110px; border-radius: 50%; background: rgba(124, 140, 255, .08); }
+
+    /* 经历 */
+    .experience-list { display: grid; gap: 18px; }
+    .experience-card { padding: 30px; }
+    .experience-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 24px; margin-bottom: 20px; }
+    .experience-title { display: flex; gap: 15px; align-items: flex-start; }
+    .experience-icon { display: grid; place-items: center; width: 46px; height: 46px; flex: 0 0 46px; border-radius: 14px; color: var(--cyan); background: rgba(113, 228, 232, .1); font-size: 20px; }
+    .experience-title h3 { margin-bottom: 5px; font-size: 21px; }
+    .experience-company { color: var(--muted); font-size: 13px; }
+    .experience-date { color: var(--muted); white-space: nowrap; font-size: 12px; }
+    .experience-content { padding-left: 61px; }
+    .experience-content p { margin-bottom: 16px; font-size: 14px; }
+    .experience-content ul { display: grid; gap: 11px; list-style: none; }
+    .experience-content li { display: flex; gap: 10px; color: #dce0f2; font-size: 13px; }
+    .experience-content li::before { content: "—"; color: var(--purple); font-weight: 900; }
+    .expand-button { margin-top: 18px; border: none; color: var(--cyan); background: transparent; font-size: 13px; font-weight: 800; }
+    .extra-detail { display: none; margin-top: 18px; padding: 18px; border: 1px solid var(--border); border-radius: 13px; background: rgba(255, 255, 255, .035); }
+    .extra-detail.open { display: block; }
+    .extra-detail p { margin: 0; font-size: 13px; }
+
+    /* 教育 */
+    .education-grid { display: grid; grid-template-columns: 1.1fr .9fr; gap: 20px; }
+    .education-card, .award-card { padding: 30px; }
+    .education-card h3, .award-card h3 { margin-bottom: 14px; }
+    .education-meta { margin-bottom: 20px; color: var(--muted); font-size: 13px; }
+    .course-tags { display: flex; flex-wrap: wrap; gap: 9px; margin-top: 18px; }
+    .course-tags span { padding: 7px 11px; border: 1px solid var(--border); border-radius: 9px; color: #dce0f2; background: rgba(255, 255, 255, .04); font-size: 12px; }
+    .award-highlight { margin: 18px 0; padding: 18px; border: 1px solid rgba(124, 140, 255, .18); border-radius: 15px; background: linear-gradient(120deg, rgba(124, 140, 255, .14), rgba(178, 140, 255, .1)); }
+    .award-highlight strong { display: block; margin-bottom: 5px; font-size: 18px; }
+    .award-highlight span { color: var(--muted); font-size: 12px; }
+
+    /* 技能 */
+    .skills-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .skill-card { padding: 25px; }
+    .skill-card h3 { margin-bottom: 17px; font-size: 18px; }
+    .skill-item { margin: 15px 0; }
+    .skill-item-top { display: flex; justify-content: space-between; gap: 12px; margin-bottom: 7px; color: #e4e7f8; font-size: 12px; }
+    .skill-bar { height: 6px; overflow: hidden; border-radius: 99px; background: rgba(255, 255, 255, .08); }
+    .skill-bar span { display: block; height: 100%; border-radius: inherit; background: linear-gradient(90deg, #8da0ff, #71e4e8); }
+
+    /* 联系（融合版：邮箱/电话明文 + 求职信息） */
+    .contact-card { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 30px; padding: clamp(28px, 5vw, 60px); background: radial-gradient(circle at 100% 0%, rgba(124, 140, 255, .16), transparent 45%), rgba(255, 255, 255, .055); }
+    .contact-card h2 { margin-bottom: 15px; }
+    .contact-card p { max-width: 620px; }
+    .contact-details { display: grid; gap: 14px; margin-top: 26px; }
+    .contact-row { display: flex; align-items: center; gap: 14px; padding: 15px 18px; border: 1px solid var(--border); border-radius: 14px; background: rgba(255, 255, 255, .045); transition: .25s ease; }
+    .contact-row:hover { border-color: rgba(124, 140, 255, .35); background: rgba(124, 140, 255, .08); }
+    .contact-icon { display: grid; place-items: center; width: 42px; height: 42px; flex: 0 0 42px; border-radius: 12px; color: #080b14; background: linear-gradient(120deg, #8da0ff, #c3a0ff); font-size: 17px; }
+    .contact-label { color: var(--muted); font-size: 11px; letter-spacing: .12em; }
+    .contact-value { font-size: 17px; font-weight: 800; letter-spacing: .02em; transition: color .2s ease; }
+    .contact-row a:hover .contact-value { color: var(--cyan); }
+    .contact-actions { display: flex; flex-direction: column; gap: 10px; min-width: 180px; }
+    .contact-actions .button { width: 100%; }
+    .contact-info { display: flex; flex-wrap: wrap; gap: 20px; margin-top: 24px; color: var(--muted); font-size: 12px; }
+    .contact-info strong { color: var(--text); font-weight: 800; }
+
+    /* 页脚 */
+    footer { padding: 28px 0 40px; border-top: 1px solid var(--border); }
+    .footer-inner { display: flex; justify-content: space-between; align-items: center; gap: 20px; color: var(--muted); font-size: 12px; }
+    .back-top { padding: 8px 13px; border: 1px solid var(--border); border-radius: 999px; color: var(--text); background: rgba(255, 255, 255, .05); font-size: 12px; }
+
+    /* 进入动画 */
+    .reveal { opacity: 0; transform: translateY(22px); transition: opacity .7s ease, transform .7s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* 平板 */
+    @media (max-width: 950px) {
+      .hero-grid { grid-template-columns: 1fr; gap: 35px; }
+      .hero { min-height: auto; }
+      .hero-visual { min-height: 390px; }
+      .project-feature { grid-template-columns: 1fr; }
+      .journey-grid { grid-template-columns: repeat(2, 1fr); }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .education-grid { grid-template-columns: 1fr; }
+      .skills-grid { grid-template-columns: repeat(2, 1fr); }
+      .contact-card { grid-template-columns: 1fr; }
+      .contact-actions { flex-direction: row; flex-wrap: wrap; }
+      .contact-actions .button { width: auto; }
+    }
+
+    /* 手机 */
+    @media (max-width: 700px) {
+      .container { width: min(calc(100% - 28px), var(--max-width)); }
+      .section { padding: 72px 0; }
+      .nav-inner { min-height: 66px; }
+      .menu-button { display: block; }
+      .nav-links { position: absolute; top: 66px; left: 14px; right: 14px; display: none; flex-direction: column; align-items: stretch; gap: 0; padding: 10px; border: 1px solid var(--border); border-radius: 16px; background: rgba(12, 15, 26, .97); box-shadow: 0 18px 60px rgba(0, 0, 0, .25); }
+      .nav-links.open { display: flex; }
+      .nav-links a { padding: 12px 14px; border-radius: 9px; }
+      .nav-links a:hover { background: rgba(255, 255, 255, .06); }
+      .nav-cta { display: none; }
+      .hero { padding: 115px 0 70px; }
+      .hero-description { font-size: 15px; }
+      .hero-visual { min-height: 340px; }
+      .orb { width: 260px; height: 260px; }
+      .visual-card { width: min(100%, 310px); }
+      .floating-tag.one { top: 20px; right: 0; }
+      .floating-tag.two { bottom: 20px; left: 0; }
+      .stats-grid { gap: 10px; }
+      .stat-card { padding: 18px; }
+      .project-info { padding: 23px; }
+      .preview-body { padding: 20px; }
+      .preview-window { min-height: 390px; }
+      .journey-grid { grid-template-columns: 1fr; }
+      .experience-card { padding: 22px; }
+      .experience-top { flex-direction: column; gap: 10px; }
+      .experience-content { padding-left: 0; }
+      .skills-grid { grid-template-columns: 1fr; }
+      .contact-card { grid-template-columns: 1fr; }
+      .contact-actions { flex-direction: row; flex-wrap: wrap; }
+      .contact-actions .button { width: auto; }
+      .contact-row { padding: 13px 14px; }
+      .contact-value { font-size: 15px; }
+      .footer-inner { flex-direction: column; align-items: flex-start; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; transition-duration: .01ms !important; }
+      .reveal { opacity: 1; transform: none; }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- 导航 -->
+  <header class="navbar" id="navbar">
+    <div class="container nav-inner">
+      <a class="brand" href="#home" aria-label="返回首页">
+        <span class="brand-mark">MY</span>
+        <span>YINLIANG<span class="gradient-text">.</span></span>
+      </a>
+      <button class="menu-button" id="menuButton" aria-label="打开导航菜单" aria-expanded="false">☰</button>
+      <nav class="nav-links" id="navLinks">
+        <a href="#home">首页</a>
+        <a href="#project">项目</a>
+        <a href="#journey">产品思路</a>
+        <a href="#experience">经历</a>
+        <a href="#education">教育</a>
+        <a href="#skills">技能</a>
+        <a href="#contact">联系</a>
+      </nav>
+      <a class="button button-primary nav-cta" href="#contact">联系我 ↗</a>
+    </div>
+  </header>
+
+  <main>
+    <!-- 首页 -->
+    <section class="hero" id="home">
+      <div class="container hero-grid">
+        <div class="hero-content reveal">
+          <div class="hero-kicker">
+            <span class="pill">旅游 × 数字化</span>
+            <span class="pill">项目实践</span>
+            <span class="pill">内容运营</span>
+          </div>
+          <h1>让旅行灵感<br><span class="gradient-text">变成行动。</span></h1>
+          <p class="hero-description">
+            我是毛银亮，中南林业科技大学旅游管理（智慧旅游方向）本科生。
+            关注旅游产品体验、内容运营与用户转化，喜欢从真实业务场景出发，
+            把信息整理成清晰、易理解、可执行的体验。
+          </p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="#project">探索我的项目 ↗</a>
+            <a class="button" href="#experience">查看实践经历</a>
+          </div>
+          <div class="hero-meta">
+            <span><strong>2028</strong> 届本科生</span>
+            <span><strong>旅游管理</strong> · 智慧旅游方向</span>
+            <span><strong>求职方向</strong> · 业务运营实习</span>
+          </div>
+        </div>
+
+        <div class="hero-visual reveal">
+          <div class="orb"></div>
+          <div class="floating-tag one">✦ Travel × Digital</div>
+          <div class="floating-tag two">产品思路 · 内容运营 · 用户体验</div>
+          <div class="visual-card">
+            <div class="visual-card-top">
+              <div class="window-dots"><span></span><span></span><span></span></div>
+              <span class="visual-number">PORTFOLIO / 2026</span>
+            </div>
+            <div class="visual-title">从目的地探索<br>到旅行决策。</div>
+            <p style="font-size:12px;">让复杂的旅游信息变得清晰、可用。</p>
+            <div class="visual-line"></div>
+            <div class="visual-line"></div>
+            <div class="visual-line"></div>
+            <div class="visual-bottom"><span>DESTINATION</span><span>ITINERARY</span><span>QUOTE</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="scroll-hint">SCROLL TO EXPLORE ↓</div>
+    </section>
+
+    <!-- 数据亮点 -->
+    <section class="section" style="padding-top:20px;">
+      <div class="container">
+        <div class="stats-grid">
+          <div class="stat-card card reveal"><div class="stat-number gradient-text">01</div><div class="stat-label">独立搭建旅游网站项目</div></div>
+          <div class="stat-card card reveal"><div class="stat-number gradient-text">17</div><div class="stat-label">暑期旅游内容发布数量</div></div>
+          <div class="stat-card card reveal"><div class="stat-number gradient-text">20+</div><div class="stat-label">暑期内容转化记录</div></div>
+          <div class="stat-card card reveal"><div class="stat-number gradient-text">100+</div><div class="stat-label">游乐园现场咨询接待</div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 旅游网站项目 -->
+    <section class="section" id="project">
+      <div class="container">
+        <div class="section-header reveal">
+          <div class="eyebrow">Featured Project</div>
+          <h2>把旅游信息，<br><span class="gradient-text">整理成产品体验。</span></h2>
+          <p style="margin-top:18px;">从旅行用户的探索与规划需求出发，尝试把目的地内容、行程搜索与报价信息组织成一个可访问、可交互的旅游网站。</p>
+        </div>
+
+        <div class="project-feature">
+          <div class="project-info card reveal">
+            <span class="pill">个人项目 / 已部署</span>
+            <h3>独立搭建旅游网站</h3>
+            <p>围绕用户旅行决策中的“去哪、怎么玩、预算多少”组织网站功能，将旅游信息与数字化体验连接起来。</p>
+            <ul class="project-points">
+              <li>目的地内容入口：帮助用户探索旅行目的地</li>
+              <li>行程搜索模块：尝试连接目的地与行程信息</li>
+              <li>报价模块：围绕预算需求组织信息</li>
+              <li>页面结构：从用户浏览路径出发组织内容</li>
+              <li>独立完成网站搭建与线上部署</li>
+            </ul>
+            <a class="button button-primary" href="https://yinliangan46-web.github.io/lvyou-wangzhan/" target="_blank" rel="noopener noreferrer">访问旅游网站 ↗</a>
+            <div class="project-tabs" role="tablist" aria-label="项目模块">
+              <button class="tab-button active" data-tab="destination" role="tab">目的地</button>
+              <button class="tab-button" data-tab="itinerary" role="tab">行程搜索</button>
+              <button class="tab-button" data-tab="quote" role="tab">报价模块</button>
+              <button class="tab-button" data-tab="thinking" role="tab">产品思路</button>
+            </div>
+            <div class="tab-panel" id="projectTabPanel">
+              <h4>01 / 目的地探索</h4>
+              <p>通过目的地信息组织内容入口，让用户可以从旅行灵感开始探索，逐步进入后续行程规划。</p>
+            </div>
+          </div>
+
+          <div class="project-preview card reveal">
+            <div class="preview-window">
+              <div class="preview-topbar"><span>● ● ●</span><span>yinliangan46-web.github.io</span></div>
+              <div class="preview-body">
+                <div class="preview-label">DISCOVER YOUR NEXT TRIP</div>
+                <div class="preview-heading">下一站，<br>去看看世界。</div>
+                <p style="font-size:12px;">搜索目的地，开启你的下一段旅行。</p>
+                <form class="preview-search" id="destinationSearch">
+                  <input id="destinationInput" type="search" placeholder="试试：长沙、海岛、古城" aria-label="搜索目的地">
+                  <button type="submit">搜索 ↗</button>
+                </form>
+                <div class="search-results" id="searchResults">
+                  <button class="destination-result" type="button" data-destination="长沙">长沙 · 城市旅行</button>
+                  <button class="destination-result" type="button" data-destination="厦门">厦门 · 海滨度假</button>
+                  <button class="destination-result" type="button" data-destination="凤凰古城">凤凰古城 · 古城漫游</button>
+                  <button class="destination-result" type="button" data-destination="张家界">张家界 · 山水探索</button>
+                </div>
+                <div class="search-note" id="searchNote">这是作品集内的交互搜索演示。</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 产品思路 -->
+    <section class="section" id="journey">
+      <div class="container">
+        <div class="section-header reveal">
+          <div class="eyebrow">Product Thinking</div>
+          <h2>从用户需求出发，<br><span class="gradient-text">让信息形成路径。</span></h2>
+          <p style="margin-top:18px;">旅游产品不仅是信息展示，也需要帮助用户完成从兴趣到决策的过程。我尝试用用户路径的方式理解项目结构。</p>
+        </div>
+        <div class="journey-grid">
+          <div class="journey-card card reveal">
+            <div class="journey-number">01 / DISCOVER</div><h3>发现目的地</h3>
+            <p>用户先产生旅行兴趣。页面需要提供清晰的目的地入口，让用户快速了解有哪些选择。</p>
+          </div>
+          <div class="journey-card card reveal">
+            <div class="journey-number">02 / SEARCH</div><h3>搜索行程</h3>
+            <p>用户开始寻找具体玩法。通过关键词与内容分类，帮助用户缩小探索范围。</p>
+          </div>
+          <div class="journey-card card reveal">
+            <div class="journey-number">03 / COMPARE</div><h3>了解预算</h3>
+            <p>用户需要理解价格与行程之间的关系。报价信息应尽量清楚、易比较。</p>
+          </div>
+          <div class="journey-card card reveal">
+            <div class="journey-number">04 / DECIDE</div><h3>形成决策</h3>
+            <p>把分散的信息连接起来，降低理解成本，让用户更容易进入下一步行动。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 实践经历 -->
+    <section class="section" id="experience">
+      <div class="container">
+        <div class="section-header reveal">
+          <div class="eyebrow">Experience</div>
+          <h2>在真实业务中，<br><span class="gradient-text">理解用户与运营。</span></h2>
+          <p style="margin-top:18px;">从旅游内容运营到游乐园现场服务，积累内容执行、用户沟通、现场问题处理与业务流程意识。</p>
+        </div>
+
+        <div class="experience-list">
+          <article class="experience-card card reveal">
+            <div class="experience-top">
+              <div class="experience-title">
+                <div class="experience-icon">✦</div>
+                <div>
+                  <h3>旅游内容运营</h3>
+                  <div class="experience-company">丰景旅行社 · 包团业务社交媒体运营</div>
+                </div>
+              </div>
+              <div class="experience-date">2026.07 — 至今</div>
+            </div>
+            <div class="experience-content">
+              <p>参与丰景旅行社旅游包团业务的社交媒体内容运营，围绕旅游产品与用户需求，协助完成内容规划、发布与转化跟进。</p>
+              <ul>
+                <li>参与旅游内容选题与内容规划，围绕产品特点组织传播信息。</li>
+                <li>暑期累计发布内容 17 条，持续进行内容执行与更新。</li>
+                <li>暑期内容带来 20+ 转化记录，关注内容与业务结果的连接。</li>
+                <li>在内容制作中使用剪辑与 AI 工具提升执行效率。</li>
+              </ul>
+              <button class="expand-button" data-expand="experienceDetail1">查看更多工作思路 ＋</button>
+              <div class="extra-detail" id="experienceDetail1">
+                <p>工作思路：先理解旅游产品的目标客群与核心卖点，再将信息拆解为用户容易理解的内容；发布后关注互动与咨询反馈，尝试让内容表达与用户需求保持一致。具体转化口径以实际业务统计为准。</p>
+              </div>
+            </div>
+          </article>
+
+          <article class="experience-card card reveal">
+            <div class="experience-top">
+              <div class="experience-title">
+                <div class="experience-icon">◎</div>
+                <div>
+                  <h3>游乐园现场运营</h3>
+                  <div class="experience-company">南京华昌龙之谷 · 现场运营</div>
+                </div>
+              </div>
+              <div class="experience-date">实践经历</div>
+            </div>
+            <div class="experience-content">
+              <p>参与游乐园现场运营与游客服务，在真实场景中处理咨询、传递信息并协助保障现场流程。</p>
+              <ul>
+                <li>累计接待 100+ 游客咨询，及时回应游客问题。</li>
+                <li>关注服务信息的准确传达，保持工作零差错记录。</li>
+                <li>在现场服务中提升沟通、协调与突发情况应对意识。</li>
+              </ul>
+              <button class="expand-button" data-expand="experienceDetail2">查看更多实践收获 ＋</button>
+              <div class="extra-detail" id="experienceDetail2">
+                <p>现场运营让我更直接地理解用户体验：用户不仅需要信息，也需要在合适的时间获得清楚、准确、可执行的指引。这类经验也帮助我从服务场景理解旅游产品的使用过程。</p>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 教育经历与荣誉 -->
+    <section class="section" id="education">
+      <div class="container">
+        <div class="section-header reveal">
+          <div class="eyebrow">Education & Recognition</div>
+          <h2>专业基础与实践成果。</h2>
+        </div>
+        <div class="education-grid">
+          <div class="education-card card reveal">
+            <span class="pill">Education</span>
+            <h3 style="margin-top:18px;">中南林业科技大学</h3>
+            <div class="education-meta">旅游管理（智慧旅游方向）<br>2024.09 — 2028.06</div>
+            <p>通过旅游管理专业学习，关注旅游场景、数字化工具与旅游产品设计之间的连接。</p>
+            <div class="course-tags">
+              <span>旅游新媒体</span><span>旅游大数据</span><span>旅游平台设计</span><span>旅游管理</span>
+            </div>
+          </div>
+          <div class="award-card card reveal">
+            <span class="pill">Award & Certificate</span>
+            <h3 style="margin-top:18px;">竞赛与证书</h3>
+            <div class="award-highlight"><strong>省级一等奖</strong><span>全国大学生红色旅游创意策划竞赛</span></div>
+            <ul class="project-points">
+              <li>导游资格证</li>
+              <li>大学英语四级（CET-4）</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 技能 -->
+    <section class="section" id="skills">
+      <div class="container">
+        <div class="section-header reveal">
+          <div class="eyebrow">Skills</div>
+          <h2>工具服务于实际问题。</h2>
+          <p style="margin-top:18px;">以业务需求为目标，使用办公、内容制作与数据工具完成信息整理、内容执行和项目实践。</p>
+        </div>
+        <div class="skills-grid">
+          <div class="skill-card card reveal">
+            <h3>办公与信息整理</h3>
+            <div class="skill-item">
+              <div class="skill-item-top"><span>Excel</span><span>数据整理</span></div>
+              <div class="skill-bar"><span style="width:75%;"></span></div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-item-top"><span>Word</span><span>文档处理</span></div>
+              <div class="skill-bar"><span style="width:78%;"></span></div>
+            </div>
+          </div>
+          <div class="skill-card card reveal">
+            <h3>内容制作</h3>
+            <div class="skill-item">
+              <div class="skill-item-top"><span>剪映</span><span>视频剪辑</span></div>
+              <div class="skill-bar"><span style="width:76%;"></span></div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-item-top"><span>AI 工具</span><span>辅助创作</span></div>
+              <div class="skill-bar"><span style="width:78%;"></span></div>
+            </div>
+          </div>
+          <div class="skill-card card reveal">
+            <h3>数字化实践</h3>
+            <div class="skill-item">
+              <div class="skill-item-top"><span>网页搭建</span><span>项目实践</span></div>
+              <div class="skill-bar"><span style="width:70%;"></span></div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-item-top"><span>Web Scraper</span><span>信息采集</span></div>
+              <div class="skill-bar"><span style="width:68%;"></span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 联系方式（含邮箱/电话明文） -->
+    <section class="section" id="contact">
+      <div class="container">
+        <div class="contact-card card reveal">
+          <div>
+            <div class="eyebrow">Let's Connect</div>
+            <h2>期待把想法，<br><span class="gradient-text">变成真实的成果。</span></h2>
+            <p>如果你正在寻找关注旅游场景、内容运营与数字化产品体验的实习生，欢迎随时与我联系。</p>
+
+            <div class="contact-details">
+              <a class="contact-row" href="mailto:2377411629@qq.com" aria-label="发送邮件">
+                <span class="contact-icon">✉</span>
+                <div>
+                  <div class="contact-label">邮箱</div>
+                  <div class="contact-value">2377411629@qq.com</div>
+                </div>
+              </a>
+              <a class="contact-row" href="tel:19531418624" aria-label="拨打电话">
+                <span class="contact-icon">☎</span>
+                <div>
+                  <div class="contact-label">电话</div>
+                  <div class="contact-value">19531418624</div>
+                </div>
+              </a>
+            </div>
+
+            <div class="contact-info">
+              <span><strong>毛银亮</strong></span>
+              <span>求职方向 · <strong>业务运营实习生</strong></span>
+              <span>预计到岗 <strong>2027 年 1 月</strong></span>
+              <span>预计 <strong>2028 年</strong> 毕业</span>
+            </div>
+          </div>
+
+          <div class="contact-actions">
+            <button class="button button-primary" id="copyEmail">复制邮箱 ↗</button>
+            <a class="button" href="mailto:2377411629@qq.com">发送邮件</a>
+            <a class="button" href="tel:19531418624">联系电话</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- 页脚 -->
+  <footer>
+    <div class="container footer-inner">
+      <div>© <span id="currentYear"></span> 毛银亮 · Personal Portfolio</div>
+      <div>TRAVEL × DIGITAL × EXPERIENCE</div>
+      <button class="back-top" id="backTop">回到顶部 ↑</button>
+    </div>
+  </footer>
+
+  <script>
+    /* 01 顶部导航滚动 */
+    const navbar = document.getElementById("navbar");
+    function updateNavbar() { navbar.classList.toggle("scrolled", window.scrollY > 30); }
+    window.addEventListener("scroll", updateNavbar);
+    updateNavbar();
+
+    /* 02 手机导航菜单 */
+    const menuButton = document.getElementById("menuButton");
+    const navLinks = document.getElementById("navLinks");
+    menuButton.addEventListener("click", () => {
+      const isOpen = navLinks.classList.toggle("open");
+      menuButton.setAttribute("aria-expanded", String(isOpen));
+      menuButton.textContent = isOpen ? "×" : "☰";
+    });
+    navLinks.querySelectorAll("a").forEach((link) => {
+      link.addEventListener("click", () => {
+        navLinks.classList.remove("open");
+        menuButton.textContent = "☰";
+        menuButton.setAttribute("aria-expanded", "false");
+      });
+    });
+
+    /* 03 滚动进入动画 */
+    const revealItems = document.querySelectorAll(".reveal");
+    if ("IntersectionObserver" in window) {
+      const revealObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) { entry.target.classList.add("visible"); observer.unobserve(entry.target); }
+        });
+      }, { threshold: 0.12 });
+      revealItems.forEach((item) => revealObserver.observe(item));
+    } else {
+      revealItems.forEach((item) => item.classList.add("visible"));
+    }
+
+    /* 04 板块导航高亮 */
+    const pageSections = document.querySelectorAll("main section[id]");
+    const navAnchors = document.querySelectorAll(".nav-links a");
+    if ("IntersectionObserver" in window) {
+      const sectionObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          const currentId = entry.target.id;
+          navAnchors.forEach((anchor) => {
+            const isActive = anchor.getAttribute("href") === "#" + currentId;
+            anchor.classList.toggle("active", isActive);
+          });
+        });
+      }, { rootMargin: "-35% 0px -55% 0px" });
+      pageSections.forEach((section) => sectionObserver.observe(section));
+    }
+
+    /* 05 项目模块切换 */
+    const projectTabs = document.querySelectorAll(".tab-button");
+    const projectTabPanel = document.getElementById("projectTabPanel");
+    const projectTabContent = {
+      destination: { title: "01 / 目的地探索", text: "通过目的地信息组织内容入口，让用户可以从旅行灵感开始探索，逐步进入后续行程规划。" },
+      itinerary: { title: "02 / 行程搜索", text: "围绕用户的旅行需求设置搜索入口，帮助用户从目的地兴趣逐渐缩小到具体的行程内容。" },
+      quote: { title: "03 / 报价模块", text: "围绕旅行预算需求组织报价信息，尝试让用户更清楚地理解行程与费用之间的关系。" },
+      thinking: { title: "04 / 从需求到体验", text: "从“去哪、怎么玩、预算多少”出发，将用户需求拆解为网站功能，让信息呈现与旅行决策形成连接。" }
+    };
+    projectTabs.forEach((tab) => {
+      tab.addEventListener("click", () => {
+        projectTabs.forEach((item) => item.classList.remove("active"));
+        tab.classList.add("active");
+        const selected = projectTabContent[tab.dataset.tab];
+        projectTabPanel.innerHTML = `<h4>${selected.title}</h4><p>${selected.text}</p>`;
+      });
+    });
+
+    /* 06 目的地交互搜索（前端演示数据） */
+    const destinations = [
+      { name: "长沙", category: "城市旅行", keywords: ["长沙", "美食", "城市", "湖南"] },
+      { name: "厦门", category: "海滨度假", keywords: ["厦门", "海岛", "海边", "度假"] },
+      { name: "凤凰古城", category: "古城漫游", keywords: ["凤凰", "古城", "古镇", "湖南"] },
+      { name: "张家界", category: "山水探索", keywords: ["张家界", "山", "自然", "湖南"] },
+      { name: "南京", category: "城市旅行", keywords: ["南京", "历史", "文化", "城市"] },
+      { name: "杭州", category: "湖畔漫游", keywords: ["杭州", "西湖", "江南", "城市"] },
+      { name: "成都", category: "美食与城市", keywords: ["成都", "美食", "四川", "城市"] },
+      { name: "苏州", category: "园林文化", keywords: ["苏州", "园林", "江南", "城市"] },
+      { name: "大理", category: "慢旅行", keywords: ["大理", "云南", "海边", "慢旅行"] },
+      { name: "三亚", category: "海岛度假", keywords: ["三亚", "海岛", "海边", "度假"] }
+    ];
+    const destinationSearch = document.getElementById("destinationSearch");
+    const destinationInput = document.getElementById("destinationInput");
+    const searchResults = document.getElementById("searchResults");
+    const searchNote = document.getElementById("searchNote");
+
+    function renderDestinations(keyword = "") {
+      const normalizedKeyword = keyword.trim().toLowerCase();
+      const matched = destinations.filter((destination) => {
+        const searchableText = [destination.name, destination.category, ...destination.keywords].join(" ").toLowerCase();
+        return searchableText.includes(normalizedKeyword);
+      });
+      searchResults.innerHTML = "";
+      if (matched.length === 0) {
+        const emptyResult = document.createElement("div");
+        emptyResult.className = "destination-result";
+        emptyResult.style.gridColumn = "1 / -1";
+        emptyResult.textContent = "暂无匹配结果，试试“长沙”或“海岛”。";
+        searchResults.appendChild(emptyResult);
+        searchNote.textContent = "没有找到匹配的示例目的地。";
+        return;
+      }
+      matched.forEach((destination) => {
+        const button = document.createElement("button");
+        button.type = "button";
+        button.className = "destination-result";
+        button.textContent = destination.name + " · " + destination.category;
+        button.addEventListener("click", () => {
+          destinationInput.value = destination.name;
+          searchNote.textContent = "已选择：" + destination.name + "。这是作品集内的交互演示。";
+        });
+        searchResults.appendChild(button);
+      });
+      searchNote.textContent = "找到 " + matched.length + " 个示例目的地。";
+    }
+
+    destinationSearch.addEventListener("submit", (event) => {
+      event.preventDefault();
+      renderDestinations(destinationInput.value);
+    });
+    destinationInput.addEventListener("input", () => renderDestinations(destinationInput.value));
+    document.querySelectorAll("[data-destination]").forEach((button) => {
+      button.addEventListener("click", () => {
+        const destination = button.dataset.destination;
+        destinationInput.value = destination;
+        renderDestinations(destination);
+      });
+    });
+
+    /* 07 经历详情展开收起 */
+    document.querySelectorAll("[data-expand]").forEach((button) => {
+      button.addEventListener("click", () => {
+        const detailId = button.dataset.expand;
+        const detail = document.getElementById(detailId);
+        const isOpen = detail.classList.toggle("open");
+        button.textContent = isOpen ? "收起详情 −" : "查看详情 ＋";
+      });
+    });
+
+    /* 08 复制邮箱 */
+    const copyEmailButton = document.getElementById("copyEmail");
+    const emailAddress = "2377411629@qq.com";
+    copyEmailButton.addEventListener("click", async () => {
+      try {
+        await navigator.clipboard.writeText(emailAddress);
+        copyEmailButton.textContent = "邮箱已复制 ✓";
+        setTimeout(() => { copyEmailButton.textContent = "复制邮箱 ↗"; }, 1800);
+      } catch (error) {
+        window.prompt("请手动复制邮箱：", emailAddress);
+      }
+    });
+
+    /* 09 回到顶部 */
+    document.getElementById("backTop").addEventListener("click", () => {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+
+    /* 10 自动年份 */
+    document.getElementById("currentYear").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
