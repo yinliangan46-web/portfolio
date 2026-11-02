@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>毛银亮｜互动式作品集</title>
+<style>
+:root {
+  --bg: #f5f4ef;
+  --ink: #17211e;
+  --green: #c9f36a;
+  --line: #d8d9d1;
+  --muted: #72776f;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC",
+               "Microsoft YaHei", sans-serif;
+}
+a { color: inherit; text-decoration: none; }
+.wrap { width: min(1100px, 90%); margin: auto; }
+nav {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 24px 0; border-bottom: 1px solid var(--line);
+}
+.logo { font-weight: 900; letter-spacing: 1px; }
+nav a { margin-left: 20px; font-size: 13px; }
+.hero { padding: 85px 0 70px; }
+.kicker { font-size: 12px; letter-spacing: 2px; color: var(--muted); }
+h1 {
+  font-size: clamp(42px, 8vw, 88px); line-height: 1.05;
+  letter-spacing: -4px; margin: 24px 0;
+}
+h1 span { background: var(--green); padding: 0 8px; }
+.intro { max-width: 650px; font-size: 18px; line-height: 1.9; }
+.pill {
+  display: inline-block; border: 1px solid var(--ink);
+  border-radius: 30px; padding: 10px 18px; margin: 10px 8px 0 0;
+  font-size: 13px;
+}
+.section { padding: 65px 0; border-top: 1px solid var(--line); }
+.section-head {
+  display: flex; justify-content: space-between; align-items: baseline;
+  gap: 20px; margin-bottom: 30px;
+}
+.section-head h2 { font-size: clamp(28px, 5vw, 46px); margin: 0; }
+.number { font-size: 12px; color: var(--muted); }
+.project {
+  background: #17211e; color: white; padding: clamp(25px, 5vw, 55px);
+  border-radius: 18px; overflow: hidden;
+}
+.project-label { color: var(--green); font-size: 12px; letter-spacing: 2px; }
+.project h3 { font-size: clamp(35px, 7vw, 70px); line-height: 1.05; margin: 25px 0; }
+.project p { color: #d4d8d1; line-height: 1.8; max-width: 650px; }
+.project a { color: var(--green); text-decoration: underline; }
+.searchbox {
+  display: flex; gap: 10px; margin: 28px 0 12px; flex-wrap: wrap;
+}
+.searchbox input {
+  flex: 1; min-width: 180px; padding: 15px; border-radius: 8px;
+  border: 1px solid #59635d; background: #25312c; color: white;
+  font-size: 15px;
+}
+button {
+  border: 0; border-radius: 8px; padding: 15px 22px;
+  background: var(--green); color: #17211e; font-weight: 700;
+  cursor: pointer;
+}
+#results { display: grid; gap: 8px; margin-top: 15px; }
+.result {
+  border: 1px solid #59635d; padding: 13px; border-radius: 8px;
+  color: white; cursor: pointer;
+}
+.result:hover { background: #2a3931; }
+.note { font-size: 12px; color: #aeb8af; }
+.cards { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+.card {
+  border: 1px solid var(--line); border-radius: 14px;
+  padding: 25px; background: rgba(255,255,255,.45);
+}
+.card h3 { margin-top: 0; font-size: 21px; }
+.card p, .card li { line-height: 1.8; color: #555d56; font-size: 14px; }
+.card .tag { font-size: 11px; color: var(--muted); letter-spacing: 1px; }
+.timeline { border-left: 2px solid var(--green); padding-left: 22px; }
+.job { margin: 0 0 30px; }
+.job h3 { margin-bottom: 6px; }
+.job .meta { color: var(--muted); font-size: 13px; }
+.job p { line-height: 1.8; }
+.skills { display: flex; flex-wrap: wrap; gap: 10px; }
+.skills span {
+  padding: 12px 16px; border: 1px solid var(--line);
+  border-radius: 30px; font-size: 13px;
+}
+footer { padding: 45px 0; border-top: 1px solid var(--line); }
+footer h2 { font-size: clamp(30px, 6vw, 55px); }
+footer a { text-decoration: underline; }
+@media(max-width:650px) {
+  nav { align-items: flex-start; }
+  nav .links { display: flex; flex-wrap: wrap; justify-content: flex-end; }
+  nav a { margin: 0 0 8px 12px; }
+  .hero { padding: 55px 0; }
+  h1 { letter-spacing: -2px; }
+  .cards { grid-template-columns: 1fr; }
+  .section { padding: 45px 0; }
+}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+<nav>
+  <div class="logo">YINLIANG.</div>
+  <div class="links">
+    <a href="#project">项目</a>
+    <a href="#experience">经历</a>
+    <a href="#about">关于</a>
+    <a href="#contact">联系</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="kicker">TRAVEL × DIGITAL · INTERACTIVE PORTFOLIO</div>
+  <h1>让旅行灵感<br><span>变成行动。</span></h1>
+  <p class="intro">
+    毛银亮｜旅游管理（智慧旅游方向）本科生。关注旅游产品体验、内容运营与用户转化，
+    擅长从真实业务场景出发，把信息整理成清晰、易理解、可执行的体验。
+  </p>
+  <a class="pill" href="#project">探索项目 ↓</a>
+  <a class="pill" href="#contact">联系我 ↗</a>
+</header>
+
+<section class="section" id="project">
+  <div class="section-head">
+    <h2>精选项目</h2><span class="number">01 / PROJECT</span>
+  </div>
+
+  <div class="project">
+    <div class="project-label">PERSONAL PROJECT / ONLINE</div>
+    <h3>TRAVEL<br>WEB.</h3>
+    <p>
+      独立搭建旅游网站，围绕用户旅行决策中的“去哪、怎么玩、预算多少”
+      组织网站功能，尝试将旅游信息与数字化体验连接。
+    </p>
+    <p>目的地探索 · 行程搜索 · 报价模块</p>
+
+    <div class="searchbox">
+      <input id="query" type="search" placeholder="搜索目的地，例如：南京、杭州">
+      <button onclick="searchPlaces()">搜索目的地</button>
+    </div>
+    <div id="results"></div>
+    <p class="note">搜索展示内置示例目的地；点击结果可访问旅游网站。</p>
+    <p>
+      <a href="https://yinliangan46-web.github.io/lvyou-wangzhan/" target="_blank">
+        访问已上线旅游网站 ↗
+      </a>
+    </p>
+  </div>
+
+  <div class="cards" style="margin-top:16px">
+    <article class="card">
+      <div class="tag">01 / DESTINATION</div>
+      <h3>目的地探索</h3>
+      <p>通过目的地信息入口，帮助用户快速了解旅行地点，降低前期信息搜集成本。</p>
+    </article>
+    <article class="card">
+      <div class="tag">02 / ITINERARY</div>
+      <h3>行程搜索</h3>
+      <p>围绕用户旅行计划组织内容，尝试让目的地信息与行程规划形成衔接。</p>
+    </article>
+    <article class="card">
+      <div class="tag">03 / QUOTE</div>
+      <h3>报价模块</h3>
+      <p>将预算作为旅行决策的重要维度，探索信息呈现与旅行需求之间的连接。</p>
+    </article>
+    <article class="card">
+      <div class="tag">04 / PRODUCT THINKING</div>
+      <h3>从需求到体验</h3>
+      <p>从“去哪、怎么玩、预算多少”出发，尝试将用户需求拆分为网站功能。</p>
+    </article>
+  </div>
+</section>
+
+<section class="section" id="experience">
+  <div class="section-head">
+    <h2>实践经历</h2><span class="number">02 / EXPERIENCE</span>
+  </div>
+  <div class="timeline">
+    <div class="job">
+      <div class="meta">2026.07 — 至今</div>
+      <h3>南京丰景旅行社｜旅游产品新媒体运营</h3>
+      <p>
+        参与旅游产品社交媒体内容策划与运营。暑期完成 20 篇内容发布，
+        带来 20+ 转化；围绕旅游产品信息，参与内容整理与用户沟通。
+      </p>
+    </div>
+    <div class="job">
+      <div class="meta">实践经历</div>
+      <h3>南京华昌龙之谷｜游乐运营</h3>
+      <p>
+        参与现场运营与游客服务，处理 100+ 游客咨询，
+        重视服务流程、信息准确性与现场沟通。
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="about">
+  <div class="section-head">
+    <h2>关于我</h2><span class="number">03 / PROFILE</span>
+  </div>
+  <div class="cards">
+    <article class="card">
+      <div class="tag">EDUCATION</div>
+      <h3>中南林业科技大学</h3>
+      <p>旅游管理（智慧旅游方向）<br>2024.09 — 2028.06</p>
+      <p>相关课程：旅游新媒体、旅游大数据、旅游平台设计。</p>
+    </article>
+    <article class="card">
+      <div class="tag">AWARD & CERTIFICATE</div>
+      <h3>竞赛与证书</h3>
+      <p>全国大学生红色旅游创意策划大赛省级一等奖。</p>
+      <p>导游资格证｜大学英语四级（CET-4）。</p>
+    </article>
+  </div>
+  <h3 style="margin-top:30px">工具与技能</h3>
+  <div class="skills">
+    <span>Excel</span><span>Word</span><span>剪映</span>
+    <span>AI 工具</span><span>网页数据采集</span>
+    <span>内容策划</span><span>旅游产品理解</span>
+  </div>
+</section>
+
+<footer id="contact">
+  <div class="kicker">LET'S CONNECT</div>
+  <h2>一起把想法<br>变成体验。</h2>
+  <p>求职方向：业务运营实习生</p>
+  <p>预计到岗：2027 年 1 月｜预计毕业：2028 年</p>
+  <p>邮箱：<a href="mailto:2377411629@qq.com">2377411629@qq.com</a></p>
+  <p>电话：19531418624</p>
+  <p class="note">© 毛银亮 · 个人互动作品集</p>
+</footer>
+</div>
+
+<script>
+const places = [
+  { name: "南京", desc: "城市旅行 · 历史文化", query: "南京" },
+  { name: "杭州", desc: "湖畔风景 · 城市漫游", query: "杭州" },
+  { name: "成都", desc: "美食体验 · 城市探索", query: "成都" },
+  { name: "长沙", desc: "城市休闲 · 美食旅行", query: "长沙" },
+  { name: "苏州", desc: "园林文化 · 江南旅行", query: "苏州" }
+];
+
+function searchPlaces() {
+  const q = document.getElementById("query").value.trim().toLowerCase();
+  const resultBox = document.getElementById("results");
+  const matches = places.filter(p =>
+    p.name.toLowerCase().includes(q) || p.desc.toLowerCase().includes(q)
+  );
+
+  resultBox.innerHTML = "";
+
+  if (!q) {
+    resultBox.innerHTML = '<p class="note">请先输入目的地名称。</p>';
+    return;
+  }
+
+  if (!matches.length) {
+    resultBox.innerHTML = '<p class="note">没有找到匹配的示例目的地，试试南京、杭州或成都。</p>';
+    return;
+  }
+
+  matches.forEach(p => {
+    const item = document.createElement("div");
+    item.className = "result";
+    item.innerHTML = "<strong>" + p.name + "</strong><br><span class='note'>" + p.desc + "</span>";
+    item.onclick = () => {
+      window.open(
+        "https://yinliangan46-web.github.io/lvyou-wangzhan/?q=" + encodeURIComponent(p.query),
+        "_blank"
+      );
+    };
+    resultBox.appendChild(item);
+  });
+}
+
+document.getElementById("query").addEventListener("keydown", e => {
+  if (e.key === "Enter") searchPlaces();
+});
+</script>
+
+</body>
+</html>
